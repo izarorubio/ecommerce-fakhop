@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-primary);
+}
+
+/* Botón TEMA CLARO/OCURO siempre encima del contenido */
+.fixed-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 50; 
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/MontserratRegular.ttf") format("truetype");
+}
+:root {
+  --font-primary: "Montserrat", sans-serif;
+  --font-secondary: "Geist Sans", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+}
+
+@font-face {
+  font-family: 'Lovan';
+  src: url('/fonts/Lovan.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
