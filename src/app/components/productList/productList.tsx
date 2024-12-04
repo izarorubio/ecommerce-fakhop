@@ -7,7 +7,6 @@ import ErrorView from "@/app/utils/ErrorView";
 import { Product } from "@/app/interfaces/product.interface";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import styles from './productList.module.css';
 
 export default function ProductList() {
     const { data, loading, error } = useFetch("https://fakestoreapi.com/products");
@@ -37,8 +36,9 @@ export default function ProductList() {
                      (!filterCategory || p.category === filterCategory))
         .slice((page - 1) * pageSize, page * pageSize);
 
+    //Estados de Cargando y Error
     if (loading) return <LoadingView />;
-    if (error) return <ErrorView message="No se pudieron cargar los productos. Por favor, inténtalo de nuevo más tarde." />;
+    if (error) return <ErrorView message="The products could not be loaded. Please try again later." />;
 
     return (
         < div className="m-16">
@@ -62,20 +62,20 @@ export default function ProductList() {
                 ))}
             </div>
             {/* PAGINACIÓN */}
-            <div className="flex justify-center mt-6">
+            <div className="flex justify-center mt-10">
                 <button
                     disabled={page === 1}
                     onClick={() => window.location.href = `/?page=${page - 1}&category=${category}`}
-                    className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+                    className="px-4 py-2 text-white bg-[#FA8B5F] dark:bg-[#772E3F] rounded disabled:opacity-50"
                 >
-                    Anterior
+                    🡠 Previous
                 </button>
                 <button
                     disabled={filteredProducts.length < pageSize || (page - 1) * pageSize + filteredProducts.length >= products.filter(p => (!filterCategory || p.category === filterCategory)).length}
                     onClick={() => window.location.href = `/?page=${page + 1}&category=${category}`}
-                    className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50 ml-4"
+                    className="px-8 py-2 text-white bg-[#FA8B5F] dark:bg-[#772E3F] rounded disabled:opacity-50 ml-4"
                 >
-                    Siguiente
+                    Next 🡢
                 </button>
             </div>
         </div>

@@ -15,6 +15,7 @@ interface CartModalProps {
 export default function CartModal({ isOpen, onClose, onCartUpdate, products }: CartModalProps) {
     if (!isOpen) return null;
 
+    //Eliminar un producto del carrito
     const handleRemoveProduct = (productId: number) => {
         removeFromCart(productId); // Elimina del LocalStorage
         const updatedCart = getCart(); // Obtiene el carrito actualizado
@@ -22,8 +23,11 @@ export default function CartModal({ isOpen, onClose, onCartUpdate, products }: C
     };
 
     return (
+        // Fondo oscuro de detrás
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
+            {/* Contenedor del modal */}
             <div className="bg-white dark:bg-black p-6 rounded shadow-lg w-[90%] max-w-lg">
+                {/* Header del carrito */}
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-lg font-semibold">Your Cart</h2>
                     <button
@@ -33,25 +37,29 @@ export default function CartModal({ isOpen, onClose, onCartUpdate, products }: C
                         ✖
                     </button>
                 </div>
+                {/* Productos */}
                 <div className="max-h-[300px] overflow-y-auto border-t border-b dark:border-gray-700">
                     {products.length > 0 ? (
                         products.map((product) => (
                             <CartProductCard
                                 key={product.id}
                                 product={product}
-                                onRemove={handleRemoveProduct} // Pasamos la función
+                                onRemove={handleRemoveProduct}
                             />
                         ))
                     ) : (
                         <p className="text-center py-4">No products in the cart.</p>
                     )}
                 </div>
+                {/* SSi hay productos en el carrito... */}
                 {products.length > 0 && (
                     <div className="mt-4">
+                          {/* Calcular precio total */}
                         <p className="font-semibold text-right">{`Total: $${products.reduce(
                             (total, product) => total + product.price,
                             0
                         ).toFixed(2)}`}</p>
+                        {/* Botón de checkout, no es funcional (cierra el carrito) */}
                         <button
                             onClick={onClose}
                             className="mt-4 w-full px-4 py-2 bg-[#FA8B5F] text-white rounded hover:bg-[#FA705F] transition"

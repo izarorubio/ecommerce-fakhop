@@ -1,13 +1,14 @@
 import { Rating } from "@/app/interfaces/product.interface";
-import RatingComponent from "../rating/rating";
-import { addToCart } from "@/app/utils/cartUtils"; // Importamos la función para añadir al carrito
+import RatingComponent from "../rating/Rating";
+import { addToCart } from "@/app/utils/cartUtils"; 
 
 export default function ProductInfo({ image, title, description, price, rating }: { image: string, title: string, description: string, price: number, rating: Rating }) {
 
+    // Añadir producto al carrito:
     const handleAddToCart = () => {
         const product = { image, title, description, price, rating, id: Math.random() }; // Simular un ID para el producto
         addToCart(product);
-        alert("Product added to cart!"); // Confirmación al usuario
+        alert("Product added to cart!");
     };
 
     return (
@@ -34,7 +35,7 @@ export default function ProductInfo({ image, title, description, price, rating }
                 {/* Línea horizontal */}
                 <hr className="border-t border-[#772E3F] dark:border-[#FA8B5F] my-4" />
 
-                {/* Opción de cantidad */}
+                {/* Opción de cantidad (solo se puede cambiar la cantidad no es funcional) */}
                 <div className="flex flex-col md:flex-row gap-12">
                     <div className="flex items-center justify-between w-full">
                         {/* Etiqueta y campo de cantidad */}

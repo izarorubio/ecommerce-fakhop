@@ -2,17 +2,15 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
 import styles from './categoryFilter.module.css';
 
 export default function CategoryFilter({ onCategorySelect }: { onCategorySelect: (category: string) => void }) {
     const [categories, setCategories] = useState<string[]>([]);
     const [isOpen, setIsOpen] = useState(false);
-    const searchParams = useSearchParams();
     const dropdownRef = useRef<HTMLDivElement>(null); // Ref para el menú desplegable
 
+     // Efecto para obtener las categorías desde la API
     useEffect(() => {
-        // Fetch categories from the API
         const fetchCategories = async () => {
             const response = await fetch('https://fakestoreapi.com/products/categories');
             const data = await response.json();
@@ -22,7 +20,7 @@ export default function CategoryFilter({ onCategorySelect }: { onCategorySelect:
         fetchCategories();
     }, []);
 
-    // Cerrar el menú al hacer clic fuera
+    // Cerrar el menú al hacer clic fuera ( cerrar si se clica fuera)
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -36,17 +34,19 @@ export default function CategoryFilter({ onCategorySelect }: { onCategorySelect:
 
     const toggleDropdown = () => setIsOpen(!isOpen);
 
+    // Selección de categoría
     const handleCategoryChange = (category: string) => {
-        onCategorySelect(category); // Llama a la función pasada para actualizar el estado en ProductList.tsx
+        onCategorySelect(category); 
         setIsOpen(false); // Cierra el menú después de seleccionar
         window.location.href = `/?page=1&category=${category}`; // Redirige y pasa el filtro a la URL
     };
 
     return (
         <div className={styles.dropdown} ref={dropdownRef}>
+            {/* Botón para abrir/cerrar el menú */}
             <button 
                 onClick={toggleDropdown} 
-                className={`${styles.button} ${isOpen ? styles.active : ''}`} // Clase dinámica
+                className={`${styles.button} ${isOpen ? styles.active : ''}`}
             >
                 <Image
                     src="/ic_categories.png"
@@ -56,15 +56,18 @@ export default function CategoryFilter({ onCategorySelect }: { onCategorySelect:
                 />
                 <span>MENU</span>
             </button>
+            {/* Menú desplegable si `isOpen` es `true` */}
             {isOpen && (
                 <div className={styles.menu}>
                     <ul className={styles.menuList}>
+                        {/* Opción para todas las categorías */}
                         <li
                             onClick={() => handleCategoryChange('')}
                             className={`${styles.menuItem} ${styles.allCategories}`}
                         >
-                            Todas las categorías
+                            All the categories
                         </li>
+                        {/* Opciones para las categorías de la API */}
                         {categories.map((category) => (
                             <li
                                 key={category}
