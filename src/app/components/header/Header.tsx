@@ -1,29 +1,40 @@
 'use client'
 
 import { useState } from "react";
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import CategoryFilter from '../categoryFilter/CategoryFilter';
 import styles from './header.module.css';
-import useSearchParamsList from "@/app/hooks/useSearchParamsList";
+import { getCart } from "@/app/utils/cartUtils";
+import { Product } from "@/app/interfaces/product.interface";
+import CartModal from "../cartModal/CartModal";
 
 export default function Header() {
     const [filterCategory, setFilterCategory] = useState('');
-    const searchParams = useSearchParams();
+    const [cartOpen, setCartOpen] = useState(false);
+    const [cartProducts, setCartProducts] = useState<Product[]>(getCart());
 
-    // Actualizar la categoría seleccionada desde el Header
+
+    // Seleccionar y actualizar categoría
     const handleCategorySelect = (category: string) => {
         setFilterCategory(category);
     };
 
-    // Pasar el estado del filtro a ProductList.tsx para filtrar los productos
-    const queryPage = searchParams.get('page') || '1';
+    // Abrir el modal del carrito
+    const handleCartClick = () => {
+        setCartProducts(getCart());
+        setCartOpen(!cartOpen);
+    };
+
+     // Actualizar el estado del carrito después de eliminar un producto
+    const handleCartUpdate = (updatedCart: Product[]) => {
+        setCartProducts(updatedCart);
+    };
 
     return (
         <header className={styles.header}>
             <div className="bg-opacity-30 bg-white dark:bg-opacity-30 dark:bg-black">
                 <div className={styles.infoContainer}>
-                    {/* Categorías */}
+                    {/* Categorías*/}
                     <CategoryFilter onCategorySelect={handleCategorySelect} />
 
                     {/* Logo */}
@@ -45,7 +56,10 @@ export default function Header() {
                                 </button>
                             </li>
                             <li>
-                            <button className="flex items-center gap-1 bg-opacity-80 bg-[#FA8B5F] text-white px-4 py-1 rounded-lg hover:bg-[#FA705F] transition duration-200">
+                            <button 
+                                className="flex items-center gap-1 bg-opacity-80 bg-[#FA8B5F] text-white px-4 py-1 rounded-lg hover:bg-[#FA705F] transition duration-200"
+                                onClick={handleCartClick}
+                            >
                                 <span>Shop</span>
                                 <img src="/ic_cart.png" alt="Cart Icon" className="w-6 h-6" />
                             </button>
@@ -54,6 +68,13 @@ export default function Header() {
                     </nav>
                 </div>
             </div>
+            {/* Modal del carrito */}
+            <CartModal
+                isOpen={cartOpen}
+                onClose={() => setCartOpen(false)}
+                products={cartProducts}
+                onCartUpdate={handleCartUpdate}
+            />
         </header>
     );
 }

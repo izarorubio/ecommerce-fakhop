@@ -71,7 +71,7 @@ export default function ProductList() {
                     Anterior
                 </button>
                 <button
-                    disabled={page * pageSize >= products.length}
+                    disabled={filteredProducts.length < pageSize || (page - 1) * pageSize + filteredProducts.length >= products.filter(p => (!filterCategory || p.category === filterCategory)).length}
                     onClick={() => window.location.href = `/?page=${page + 1}&category=${category}`}
                     className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50 ml-4"
                 >

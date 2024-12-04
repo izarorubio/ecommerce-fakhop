@@ -1,16 +1,24 @@
 import { Rating } from "@/app/interfaces/product.interface";
 import RatingComponent from "../rating/rating";
+import { addToCart } from "@/app/utils/cartUtils"; // Importamos la función para añadir al carrito
 
 export default function ProductInfo({ image, title, description, price, rating }: { image: string, title: string, description: string, price: number, rating: Rating }) {
+
+    const handleAddToCart = () => {
+        const product = { image, title, description, price, rating, id: Math.random() }; // Simular un ID para el producto
+        addToCart(product);
+        alert("Product added to cart!"); // Confirmación al usuario
+    };
+
     return (
         <div className="max-w-7xl mx-auto mt-16 mb-2 p-10 flex flex-col md:flex-row gap-12">
             {/* Imagen del producto */}
             <div className="mt-16 ml-[100px] w-[400px] h-auto">
-                <img src={image} alt={title} className="object-contain"/>
+                <img src={image} alt={title} className="object-contain" />
             </div>
 
             {/* Detalles del producto */}
-            <div className="flex-1 flex flex-col gap-5 border-2 border-[#772E3F] dark:border-[#FA8B5F]  mt-16 mr-[100px] p-4">
+            <div className="flex-1 flex flex-col gap-5 border-2 border-[#772E3F] dark:border-[#FA8B5F] mt-16 mr-[100px] p-4">
                 <h1 className="text-3xl font-semibold text-gray-800 dark:text-gray-200">{title}</h1>
 
                 {/* Rating */}
@@ -53,11 +61,13 @@ export default function ProductInfo({ image, title, description, price, rating }
                 </div>
 
                 {/* Botón "Añadir al carrito" */}
-                <button className="mt-8 mb-4 mx-16 py-2 font-semibold border-2 border-[#772E3F] dark:border-[#FA8B5F] text-[#772E3F] dark:text-[#FA8B5F] hover:bg-[#FA8B5F] hover:text-white dark:hover:text-white hover:border-[#FA8B5F] transition-all">
+                <button
+                    onClick={handleAddToCart}
+                    className="mt-8 mb-4 mx-16 py-2 font-semibold border-2 border-[#772E3F] dark:border-[#FA8B5F] text-[#772E3F] dark:text-[#FA8B5F] hover:bg-[#FA8B5F] hover:text-white dark:hover:text-white hover:border-[#FA8B5F] transition-all"
+                >
                     ADD TO CART
                 </button>
             </div>
         </div>
     );
 }
-

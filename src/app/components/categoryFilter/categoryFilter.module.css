@@ -59,4 +59,31 @@
   .menuItem:focus {
     background-color: #e0e0e0;
   }
-  
+
+  /* Cambiar el color del texto "MENU" cuando el menú está abierto */
+.button.active span {
+  color: #FA8B5F; 
+}
+
+/* Subrayar el texto "MENU" cuando se pasa el mouse */
+.button:hover span::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 40px;
+  height: 2px; 
+  background-color: #FA8B5F; 
+  transition: width 0.3s ease;
+  width: 60%;
+}
+
+.button span::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 40px;
+  height: 2px;
+  width: 0; 
+  background-color: #FA8B5F;
+  transition: width 0.3s ease;
+}
