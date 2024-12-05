@@ -37,10 +37,16 @@ export default function Home() {
                 rating={product.rating}
             />
 
+            {/* Línea horizontal */}
+            <hr className="border-t border-[#772E3F] dark:border-[#FA8B5F] my-6 max-w-5xl mx-auto" />
+
             {/* Sección de Comentarios */}
             <CommentSection initialComments={[]} /> {/* Se pasan los comentarios iniciales como un array vacío */}
 
-            <div className="mx-[180px]">
+            {/* Línea horizontal */}
+            <hr className="border-t border-[#772E3F] dark:border-[#FA8B5F] my-6 max-w-5xl mx-auto" />
+
+            <div className="pt-4 mx-[180px]">
             {/* Productos relacionados */}
             <RelatedProductList category={product.category} />
             </div>
