@@ -9,6 +9,8 @@ import ErrorView from "@/app/utils/ErrorView";
 import { Product } from "@/app/interfaces/product.interface";
 import { usePathname } from "next/navigation";
 import CommentSection from "@/app/components/comments/CommentsSection"
+import RatingBig from "@/app/components/rating/RatingBig";
+
 
 export default function Home() {
     const productId = usePathname().split('/').at(-1);
@@ -40,8 +42,18 @@ export default function Home() {
             {/* Línea horizontal */}
             <hr className="border-t border-[#772E3F] dark:border-[#FA8B5F] my-6 max-w-5xl mx-auto" />
 
-            {/* Sección de Comentarios */}
-            <CommentSection initialComments={[]} /> {/* Se pasan los comentarios iniciales como un array vacío */}
+            {/* Sección de Comentarios y Rating */}
+            <div className="grid grid-cols-3 gap-10 max-w-5xl mx-auto">
+                {/* Sección de Comentarios (2/3 del espacio) */}
+                <div className="col-span-2">
+                    <CommentSection initialComments={[]} /> {/* Se pasan los comentarios iniciales como un array vacío */}
+                </div>
+
+                {/* Rating (1/3 del espacio) */}
+                <div className="mt-10 col-span-1">
+                    <RatingBig rating={product.rating} />
+                </div>
+            </div>
 
             {/* Línea horizontal */}
             <hr className="border-t border-[#772E3F] dark:border-[#FA8B5F] my-6 max-w-5xl mx-auto" />

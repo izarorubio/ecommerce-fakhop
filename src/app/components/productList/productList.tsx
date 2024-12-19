@@ -23,7 +23,7 @@ export default function ProductList() {
     //Poner el título de la categoría seleccionada
     useEffect(() => {
         if (category === '') {
-            setCategoryTitle('Todas las categorías');
+            setCategoryTitle('Here all the categories');
         } else {
             setCategoryTitle(category.charAt(0).toUpperCase() + category.slice(1));
         }

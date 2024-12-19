@@ -9,7 +9,7 @@ interface CommentInputProps {
 
 const CommentInput: React.FC<CommentInputProps> = ({ onAddComment, isCommenting }) => {
     const [newComment, setNewComment] = useState('');
-
+    //Añadir comentario:
     const handleAddComment = () => {
         if (newComment.trim()) {
             onAddComment(newComment);
@@ -19,7 +19,9 @@ const CommentInput: React.FC<CommentInputProps> = ({ onAddComment, isCommenting 
 
     return (
         <div className="bg-[#fbf6ff] border border-[#141414] dark:bg-[#171921] dark:border-gray-200 p-4">
+            {/* Título del formulario */}
             <h3 className="text-lg font-semibold text-black dark:text-gray-100 mb-2">Add a Comment</h3>
+            {/* Campo de texto para escribir comentario */}
             <textarea
                 placeholder="Write your thoughts here..."
                 value={newComment}
@@ -27,6 +29,8 @@ const CommentInput: React.FC<CommentInputProps> = ({ onAddComment, isCommenting 
                 rows={4}
                 className="w-full p-3 text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#3f57ba] dark:border-gray-600 dark:bg-[#323545] dark:text-gray-200 resize-none">
                 </textarea>
+            
+            {/* Botón para publicar */}
             <button
                 onClick={handleAddComment}
                 disabled={isCommenting || !newComment.trim()}

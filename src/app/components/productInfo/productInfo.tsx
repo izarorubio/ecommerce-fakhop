@@ -1,5 +1,5 @@
 import { Rating } from "@/app/interfaces/product.interface";
-import RatingComponent from "../rating/Rating";
+import RatingComponent from "../rating/RatingSmall";
 import { addToCart } from "@/app/utils/cartUtils"; 
 
 export default function ProductInfo({ image, title, description, price, rating }: { image: string, title: string, description: string, price: number, rating: Rating }) {
