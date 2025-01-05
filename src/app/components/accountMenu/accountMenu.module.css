@@ -8,28 +8,30 @@
     right: 0;
     background-color: white;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
     z-index: 100;
     width: 200px;
     padding: 10px;
     color: black;
+    border: 1px solid #772E3F;
 }
 
 .menuList {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 5px;
     list-style: none;
 }
 
 .menuItem {
+    margin: 5px;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    border-radius: 4px;
+    border: 1px solid #772E3F;
 }
 
 .menuItem:hover {
-    background-color: #f0f0f0;
+    background-color: #53202cad;
+    color:white;
 }
 
 .menuItem:focus {
