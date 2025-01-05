@@ -14,7 +14,7 @@ import RatingBig from "@/app/components/rating/RatingBig";
 
 export default function Home() {
     const productId = usePathname().split('/').at(-1);
-    const { data, loading, error } = useFetch(`https://fakestoreapi.com/products/${productId}`);
+    const { data, loading, error } = useFetch(`https://api-backend-vgwb.onrender.com/products/${productId}`);
     const product: Product = data as any;
     const router = useRouter(); // Para volver a la página anterior
 
@@ -35,6 +35,7 @@ export default function Home() {
                 image={product.image} 
                 title={product.title} 
                 description={product.description} 
+                category={product.category}
                 price={product.price} 
                 rating={product.rating}
             />

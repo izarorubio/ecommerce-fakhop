@@ -2,11 +2,11 @@ import { Rating } from "@/app/interfaces/product.interface";
 import RatingComponent from "../rating/RatingSmall";
 import { addToCart } from "@/app/utils/cartUtils"; 
 
-export default function ProductInfo({ image, title, description, price, rating }: { image: string, title: string, description: string, price: number, rating: Rating }) {
+export default function ProductInfo({ image, title, description, category, price, rating }: { image: string, title: string, category: string, description: string, price: number, rating: Rating }) {
 
     // Añadir producto al carrito:
     const handleAddToCart = () => {
-        const product = { image, title, description, price, rating, id: Math.random() }; // Simular un ID para el producto
+        const product = { image, title, description, category, price, rating, id: Math.random() }; // Simular un ID para el producto
         addToCart(product);
         alert("Product added to cart!");
     };

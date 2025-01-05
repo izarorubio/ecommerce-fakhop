@@ -1,21 +1,23 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import { Product } from "@/app/interfaces/product.interface";
 import CartProductCard from "../cartProductCard/CartProductCard";
 import { removeFromCart, getCart } from "@/app/utils/cartUtils";
 
-
-interface CartModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    onCartUpdate: (products: Product[]) => void;
-    products: Product[];
-}
-
 export default function CartModal({ isOpen, onClose, onCartUpdate, products }: CartModalProps) {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true); // Esto se asegura que solo se renderice en el cliente
+    }, []);
+
+    if (!isClient) return null;
+
     if (!isOpen) return null;
 
-    //Eliminar un producto del carrito
+    // Eliminar un producto del carrito
     const handleRemoveProduct = (productId: number) => {
         removeFromCart(productId); // Elimina del LocalStorage
         const updatedCart = getCart(); // Obtiene el carrito actualizado
@@ -23,7 +25,6 @@ export default function CartModal({ isOpen, onClose, onCartUpdate, products }: C
     };
 
     return (
-        // Fondo oscuro de detrás
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-50">
             {/* Contenedor del modal */}
             <div className="bg-white dark:bg-black p-6 rounded shadow-lg w-[90%] max-w-lg">
@@ -51,12 +52,12 @@ export default function CartModal({ isOpen, onClose, onCartUpdate, products }: C
                         <p className="text-center py-4">No products in the cart.</p>
                     )}
                 </div>
-                {/* SSi hay productos en el carrito... */}
+                {/* Si hay productos en el carrito... */}
                 {products.length > 0 && (
                     <div className="mt-4">
-                          {/* Calcular precio total */}
+                        {/* Calcular precio total */}
                         <p className="font-semibold text-right">{`Total: $${products.reduce(
-                            (total, product) => total + product.price,
+                            (total, product) => total + parseFloat(product.price), // Asegúrate de convertir el precio a número
                             0
                         ).toFixed(2)}`}</p>
                         {/* Botón de checkout, no es funcional (cierra el carrito) */}

@@ -12,9 +12,9 @@ export default function CategoryFilter({ onCategorySelect }: { onCategorySelect:
      // Efecto para obtener las categorías desde la API
     useEffect(() => {
         const fetchCategories = async () => {
-            const response = await fetch('https://fakestoreapi.com/products/categories');
+            const response = await fetch('https://api-backend-vgwb.onrender.com/categories');
             const data = await response.json();
-            setCategories(data);
+            setCategories(data.map((category) => category.name)); // Usa el campo `name`
         };
 
         fetchCategories();

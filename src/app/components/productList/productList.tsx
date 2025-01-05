@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function ProductList() {
-    const { data, loading, error } = useFetch("https://fakestoreapi.com/products");
+    const { data, loading, error } = useFetch("https://api-backend-vgwb.onrender.com/products");
     const products = data as Product[] || [];
     const [search, setSearch] = useState('');
     const [filterCategory, setFilterCategory] = useState('');
@@ -33,7 +33,7 @@ export default function ProductList() {
 
     const filteredProducts = products
         .filter(p => p.title.toLowerCase().includes(search.toLowerCase()) && 
-                     (!filterCategory || p.category === filterCategory))
+                    (!filterCategory || p.category === filterCategory))
         .slice((page - 1) * pageSize, page * pageSize);
 
     //Estados de Cargando y Error
