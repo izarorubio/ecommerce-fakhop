@@ -33,7 +33,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 <div className="mb-4 flex justify-between items-center">
                     <p className="text-[25px] font-semibold">{`${price}$`}</p>
                     <button
-                        className="flex items-center gap-2 text-sm bg-[#772E3F] dark:bg-[#FA8B5F] text-white px-4 py-1 rounded-lg hover:bg-[#FA705F] transition duration-200"
+                        className="flex items-center gap-2 text-sm bg-[#772E3F] dark:bg-[#FA8B5F] text-white px-4 py-1 rounded-lg hover:bg-[#FA705F] transition duration-200 dark:hover:bg-[#9f4f44] transition duration-200"
                         onClick={handleAddToCart}
                     >
                         <span>Add</span>
