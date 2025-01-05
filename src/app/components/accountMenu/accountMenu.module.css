@@ -1,0 +1,37 @@
+.dropdown {
+    position: relative;
+}
+
+.menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 100;
+    width: 200px;
+    padding: 10px;
+    color: black;
+}
+
+.menuList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menuItem {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.menuItem:hover {
+    background-color: #f0f0f0;
+}
+
+.menuItem:focus {
+    background-color: #e0e0e0;
+}

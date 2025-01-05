@@ -7,6 +7,7 @@ import ThemeProvider from "./utils/ThemeProvider";
 import ThemeSwitcher from "./components/themeSwitcher/themeSwitcher";
 
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
