@@ -6,6 +6,13 @@ import { Product } from "@/app/interfaces/product.interface";
 import CartProductCard from "../cartProductCard/CartProductCard";
 import { removeFromCart, getCart } from "@/app/utils/cartUtils";
 
+interface CartModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onCartUpdate: (updatedCart: Product[]) => void;
+    products: Product[];
+}
+
 export default function CartModal({ isOpen, onClose, onCartUpdate, products }: CartModalProps) {
     const [isClient, setIsClient] = useState(false);
 
@@ -57,7 +64,7 @@ export default function CartModal({ isOpen, onClose, onCartUpdate, products }: C
                     <div className="mt-4">
                         {/* Calcular precio total */}
                         <p className="font-semibold text-right">{`Total: $${products.reduce(
-                            (total, product) => total + parseFloat(product.price), // Asegúrate de convertir el precio a número
+                            (total, product) => total + parseFloat(product.price.toString()), // Asegúrate de convertir el precio a número
                             0
                         ).toFixed(2)}`}</p>
                         {/* Botón de checkout, no es funcional (cierra el carrito) */}

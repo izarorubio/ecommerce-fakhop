@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function ProductList() {
     const { data, loading, error } = useFetch("https://api-backend-vgwb.onrender.com/products");
-    const products = data as Product[] || [];
+    const products: Product[] = Array.isArray(data) ? data : [];
     const [search, setSearch] = useState('');
     const [filterCategory, setFilterCategory] = useState('');
     const [categoryTitle, setCategoryTitle] = useState('');

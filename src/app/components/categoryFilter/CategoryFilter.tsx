@@ -13,10 +13,10 @@ export default function CategoryFilter({ onCategorySelect }: { onCategorySelect:
     useEffect(() => {
         const fetchCategories = async () => {
             const response = await fetch('https://api-backend-vgwb.onrender.com/categories');
-            const data = await response.json();
-            setCategories(data.map((category) => category.name)); // Usa el campo `name`
+            const data = await response.json() as { name: string }[]; // Define el tipo de cada elemento
+            setCategories(data.map((category) => category.name));
         };
-
+    
         fetchCategories();
     }, []);
 

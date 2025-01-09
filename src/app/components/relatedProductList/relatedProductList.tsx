@@ -6,7 +6,7 @@ import { Product } from "@/app/interfaces/product.interface";
 
 export default function RelatedProductList({ category }: { category: string }) {
     const { data, loading, error } = useFetch(`https://api-backend-vgwb.onrender.com/products?category=${category}&limit=3`);
-    const products: Product[] = data as any;
+    const products: Product[] = Array.isArray(data) ? data : [];
 
     if (loading) return <p className="text-center mt-10">Loading related product...</p>;
     if (error) return <p className="text-center mt-10 text-red-500">Error: {error}</p>;
