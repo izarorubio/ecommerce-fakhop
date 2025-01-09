@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "react-scripts build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -28,5 +28,8 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",
     "typescript": "^5"
-  }
+  },
+  "engines": {
+  "node": "20.17.0"
+}
 }
