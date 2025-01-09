@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import ProductInfo from "@/app/components/productInfo/ProductInfo";
-import RelatedProductList from "@/app/components/relatedProductList/RelatedProductList";
+import ProductInfo from "@/app/components/productInfo/a";
+import RelatedProductList from "@/app/components/relatedProductList/c";
 import useFetch from "@/app/hooks/useFetch";
 import LoadingView from "@/app/utils/LoadingView";
 import ErrorView from "@/app/utils/ErrorView";
