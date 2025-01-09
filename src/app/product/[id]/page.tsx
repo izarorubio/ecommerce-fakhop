@@ -15,12 +15,12 @@ import RatingBig from "@/app/components/rating/RatingBig";
 export default function Home() {
     const productId = usePathname().split('/').at(-1);
     const { data, loading, error } = useFetch(`https://api-backend-vgwb.onrender.com/products/${productId}`);
-    const product: Product = data as any;
+    const product: Product | null = data ? (data as unknown as Product) : null;
     const router = useRouter(); // Para volver a la página anterior
 
     //Estados de Cargando y Error
     if (loading) return <LoadingView />;
-    if (error) return <ErrorView message="The products could not be loaded. Please try again later." />;
+    if (error || !product) return <ErrorView message="The products could not be loaded. Please try again later." />;
 
     return (
         <>
