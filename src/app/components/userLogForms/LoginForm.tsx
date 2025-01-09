@@ -26,6 +26,7 @@ export default function LoginForm() {
                 setMessage(data.error || 'Failed to log in.');
             }
         } catch (error) {
+            console.error(error)
             setMessage('An error occurred. Please try again.');
         }
     };

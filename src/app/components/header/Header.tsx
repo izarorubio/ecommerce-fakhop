@@ -10,6 +10,7 @@ import { Product } from "@/app/interfaces/product.interface";
 import CartModal from "../cartModal/CartModal";
 
 export default function Header() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [filterCategory, setFilterCategory] = useState('');
     const [cartOpen, setCartOpen] = useState(false);
     const [cartProducts, setCartProducts] = useState<Product[]>(getCart());

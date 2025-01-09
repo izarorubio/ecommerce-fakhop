@@ -4,7 +4,6 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 export default function RatingComponent({ rating }: { rating: Rating }) {
     const rate = rating.rate;
     const totalStars = 5; // Máximo de 5 estrellas
-    const reviewCount = rating.count;
 
     // Simulación de distribución de calificaciones
     const ratingsDistribution = [28, 10, 18, 6, 7];
