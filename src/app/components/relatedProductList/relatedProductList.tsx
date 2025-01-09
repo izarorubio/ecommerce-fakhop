@@ -5,7 +5,7 @@ import ProductCard from "../productCard/ProductCard";
 import { Product } from "@/app/interfaces/product.interface";
 
 export default function RelatedProductList({ category }: { category: string }) {
-    const { data, loading, error } = useFetch(`https://api-backend-vgwb.onrender.com/products?categories=${category}&limit=3`);
+    const { data, loading, error } = useFetch(`https://api-backend-vgwb.onrender.com/products?category=${category}&limit=3`);
     const products: Product[] = data as any;
 
     if (loading) return <p className="text-center mt-10">Loading related product...</p>;
