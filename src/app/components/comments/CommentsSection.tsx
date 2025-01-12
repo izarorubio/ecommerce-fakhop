@@ -24,7 +24,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ initialComments }) => {
         };
 
     setTimeout(() => {
-        setComments([newComment, ...comments]); // Añade el nuevo comentario al inicio
+        setComments([newComment, ...comments]); // Añadir el nuevo comentario al inicio
         setIsCommenting(false);
     }, 1000); // Simula el tiempo de publicación
     };

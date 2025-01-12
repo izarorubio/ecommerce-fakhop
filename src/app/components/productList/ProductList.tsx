@@ -16,7 +16,7 @@ export default function ProductList() {
     const [filterCategory, setFilterCategory] = useState('');
     const [categoryTitle, setCategoryTitle] = useState('');
 
-    // Suspense Wrapper: Asegúrate de que `useSearchParams` se use solo en el cliente
+    // Suspense Wrapper:
     const RenderWithSuspense = () => {
         const searchParams = useSearchParams();
         const page = Number(searchParams.get('page')) || 1;

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation'; // Usamos el hook useRouter para redirigir
+import { useRouter } from 'next/navigation'; // hook useRouter para redirigir
 import styles from './accountMenu.module.css';
 
 export default function AccountMenu() {

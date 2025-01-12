@@ -61,7 +61,7 @@ export default function Home() {
 
             <div className="pt-4 mx-[180px]">
             {/* Productos relacionados */}
-            <RelatedProductList category={product.category} />
+            <RelatedProductList category={product.category} currentProductId={product.id} />
             </div>
         </>
     );
